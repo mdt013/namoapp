@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
         PendingIntent pending = PendingIntent.getActivity(this,1235, i, PendingIntent.FLAG_CANCEL_CURRENT);
 
         AlarmManager alarm = (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
-        alarm.set(AlarmManager.RTC_WAKEUP, t.getTimeInMillis(),pending);
+        alarm.set(AlarmManager.RTC_WAKEUP, cl.getTimeInMillis(),pending);
 
     }
 

@@ -15,12 +15,16 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import com.infojunc.namokarmantra.R;
+
 import java.io.IOException;
 
 /**
  * Created by Mudit on 7/23/2014.
  */
-public class AlarmSound extends ActionBarActivity{
+public class AlarmSound extends Activity{
     private MediaPlayer player;
     final Context context=this;
 
@@ -32,12 +36,13 @@ public class AlarmSound extends ActionBarActivity{
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.alarmview);
 
-        Button stop = (Button) findViewById(R.id.alarm);
+        Button stop = (Button) findViewById(R.id.button);
+        ImageView img = (ImageView)findViewById(R.id.imageView);
+        img.setImageResource(R.drawable.ic_launcher_web);
         stop.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 player.stop();
-                Intent i=new Intent(context,Bye.class);
-                startActivity(i);
+
                 return false;
             }
         });
@@ -62,13 +67,13 @@ public class AlarmSound extends ActionBarActivity{
     }
 
     private Uri getAlarmSound() {
-        Uri alertSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        if (alertSound == null) {
-            alertSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            if (alertSound == null) {
-                alertSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-            }
-        }
+        Uri alertSound = Uri.parse("android.resource://com.app.namokarmantra.app/"+R.raw.namokar);
+//        if (alertSound == null) {
+//            alertSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//            if (alertSound == null) {
+//                alertSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+//            }
+//        }
         return alertSound;
     }
 
